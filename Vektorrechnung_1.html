@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Verbindungsvektor mit Plot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 1: Verbindungsvektor mit Plot</h2>
+    <p>Gib zwei Punkte A und B ein. Der Verbindungsvektor →AB wird berechnet und gezeichnet.</p>
+
+    <h3>Punkt A:</h3>
+    <label for="x1">x₁:</label>
+    <input type="number" id="x1" value="3">
+    <label for="y1">y₁:</label>
+    <input type="number" id="y1" value="2">
+
+    <h3>Punkt B:</h3>
+    <label for="x2">x₂:</label>
+    <input type="number" id="x2" value="7">
+    <label for="y2">y₂:</label>
+    <input type="number" id="y2" value="-3">
+
+    <br><br>
+    <button onclick="berechneVektor()">Berechnen & Zeichnen</button>
+
+    <div class="result" id="ergebnis"></div>
+
+    <canvas id="plot" width="400" height="400"></canvas>
+
+   <script>
+    function berechneVektor() {
+        const x1 = parseFloat(document.getElementById('x1').value);
+        const y1 = parseFloat(document.getElementById('y1').value);
+        const x2 = parseFloat(document.getElementById('x2').value);
+        const y2 = parseFloat(document.getElementById('y2').value);
+
+        const vx = x2 - x1;
+        const vy = y2 - y1;
+
+        const output = `
+            <strong>Ergebnis:</strong><br>
+            →AB = (${vx}; ${vy})<br><br>
+            <strong>Erklärung:</strong><br>
+            Der Verbindungsvektor →AB wird berechnet durch:<br>
+            →AB = B - A = (${x2} - ${x1}, ${y2} - ${y1}) = (${vx}, ${vy})<br>
+            Der Vektor zeigt die Richtung und Länge von Punkt A nach Punkt B.
+        `;
+
+        document.getElementById('ergebnis').innerHTML = output;
+        zeichneVektor(x1, y1, x2, y2);
+    }
+
+    function zeichneVektor(x1, y1, x2, y2) {
+        const canvas = document.getElementById('plot');
+        const ctx = canvas.getContext('2d');
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const scale = 20;
+        const originX = canvas.width / 2;
+        const originY = canvas.height / 2;
+
+        const toCanvasX = x => originX + x * scale;
+        const toCanvasY = y => originY - y * scale;
+
+        // Koordinatenachsen zeichnen
+        ctx.strokeStyle = "#ccc";
+        ctx.beginPath();
+        ctx.moveTo(0, originY);
+        ctx.lineTo(canvas.width, originY);
+        ctx.moveTo(originX, 0);
+        ctx.lineTo(originX, canvas.height);
+        ctx.stroke();
+
+        // Achsenbeschriftung (x und y Achse)
+        ctx.fillStyle = "#333";
+        ctx.font = "10px Arial";
+        for (let i = -10; i <= 10; i++) {
+            // X-Achse
+            const x = toCanvasX(i);
+            ctx.beginPath();
+            ctx.moveTo(x, originY - 3);
+            ctx.lineTo(x, originY + 3);
+            ctx.stroke();
+            if (i !== 0) ctx.fillText(i, x - 3, originY + 12);
+
+            // Y-Achse
+            const y = toCanvasY(i);
+            ctx.beginPath();
+            ctx.moveTo(originX - 3, y);
+            ctx.lineTo(originX + 3, y);
+            ctx.stroke();
+            if (i !== 0) ctx.fillText(i, originX + 5, y + 3);
+        }
+
+        // Punkt A zeichnen
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(toCanvasX(x1), toCanvasY(y1), 5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillText("A", toCanvasX(x1) + 6, toCanvasY(y1) - 6);
+
+        // Punkt B zeichnen
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(toCanvasX(x2), toCanvasY(y2), 5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.fillText("B", toCanvasX(x2) + 6, toCanvasY(y2) - 6);
+
+        // Vektor zeichnen
+        ctx.strokeStyle = "green";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(toCanvasX(x1), toCanvasY(y1));
+        ctx.lineTo(toCanvasX(x2), toCanvasY(y2));
+        ctx.stroke();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Mittelpunkt der Strecke</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 2: Mittelpunkt der Strecke AB</h2>
+    <p>Gib die Koordinaten zweier Punkte A und B ein. Der Mittelpunkt M der Strecke AB wird berechnet und grafisch dargestellt.</p>
+
+    <h3>Beispiel: A(1;4), B(5;6)</h3>
+
+    <h3>Punkt A:</h3>
+    <label for="x1">x₁:</label>
+    <input type="number" id="x1" value="1">
+    <label for="y1">y₁:</label>
+    <input type="number" id="y1" value="4">
+
+    <h3>Punkt B:</h3>
+    <label for="x2">x₂:</label>
+    <input type="number" id="x2" value="5">
+    <label for="y2">y₂:</label>
+    <input type="number" id="y2" value="6">
+
+    <br><br>
+    <button onclick="berechneMittelpunkt()">Berechnen & Zeichnen</button>
+
+    <div class="result" id="ergebnis"></div>
+
+    <canvas id="plot" width="400" height="400"></canvas>
+
+    <script>
+        function berechneMittelpunkt() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const x2 = parseFloat(document.getElementById('x2').value);
+            const y2 = parseFloat(document.getElementById('y2').value);
+
+            const mx = (x1 + x2) / 2;
+            const my = (y1 + y2) / 2;
+
+            const output = `
+                <strong>Ergebnis:</strong><br>
+                Mittelpunkt M = (${mx}; ${my})<br><br>
+                <strong>Erklärung:</strong><br>
+                Der Mittelpunkt einer Strecke wird berechnet durch:<br>
+                M = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)<br>
+                In diesem Fall: M = ((${x1} + ${x2}) / 2 ; (${y1} + ${y2}) / 2) = (${mx}; ${my})<br>
+                Der Punkt M liegt genau in der Mitte zwischen A und B.
+            `;
+
+            document.getElementById('ergebnis').innerHTML = output;
+            zeichneMittelpunkt(x1, y1, x2, y2, mx, my);
+        }
+
+        function zeichneMittelpunkt(x1, y1, x2, y2, mx, my) {
+            const canvas = document.getElementById('plot');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const scale = 20;
+            const originX = canvas.width / 2;
+            const originY = canvas.height / 2;
+
+            const toCanvasX = x => originX + x * scale;
+            const toCanvasY = y => originY - y * scale;
+
+            // Koordinatenachsen
+            ctx.strokeStyle = "#ccc";
+            ctx.beginPath();
+            ctx.moveTo(0, originY);
+            ctx.lineTo(canvas.width, originY);
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, canvas.height);
+            ctx.stroke();
+
+            // Achsenbeschriftung
+            ctx.fillStyle = "#333";
+            ctx.font = "10px Arial";
+            for (let i = -10; i <= 10; i++) {
+                const x = toCanvasX(i);
+                ctx.beginPath();
+                ctx.moveTo(x, originY - 3);
+                ctx.lineTo(x, originY + 3);
+                ctx.stroke();
+                if (i !== 0) ctx.fillText(i, x - 3, originY + 12);
+
+                const y = toCanvasY(i);
+                ctx.beginPath();
+                ctx.moveTo(originX - 3, y);
+                ctx.lineTo(originX + 3, y);
+                ctx.stroke();
+                if (i !== 0) ctx.fillText(i, originX + 5, y + 3);
+            }
+
+            // Punkt A
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(x1), toCanvasY(y1), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("A", toCanvasX(x1) + 6, toCanvasY(y1) - 6);
+
+            // Punkt B
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(x2), toCanvasY(y2), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("B", toCanvasX(x2) + 6, toCanvasY(y2) - 6);
+
+            // Mittelpunkt M
+            ctx.fillStyle = "green";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(mx), toCanvasY(my), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("M", toCanvasX(mx) + 6, toCanvasY(my) - 6);
+
+            // Strecke AB zeichnen
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(toCanvasX(x1), toCanvasY(y1));
+            ctx.lineTo(toCanvasX(x2), toCanvasY(y2));
+            ctx.stroke();
+        }
+    </script>
+</body>
+</html>

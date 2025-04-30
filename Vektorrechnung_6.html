@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Linearkombination von Vektoren</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+        }
+        input {
+            width: 120px;
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #eef;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 6: Linearkombination von Vektoren berechnen</h2>
+    <p>Gib Terme einer Linearkombination ein, z. B.: <code>1/7*(14;-49)</code>, <code>(-2;5)</code>, <code>(1;0)</code></p>
+
+    <label for="term1">Term 1:</label>
+    <input type="text" id="term1" value="1/7*(14;-49)">
+    <br>
+    <label for="term2">Term 2:</label>
+    <input type="text" id="term2" value="(-2;5)">
+    <br>
+    <label for="term3">Term 3:</label>
+    <input type="text" id="term3" value="(1;0)">
+    <br><br>
+
+    <button onclick="berechneLinearkombination()">Berechnen & Zeichnen</button>
+
+    <div class="result" id="ergebnis"></div>
+
+    <canvas id="plot" width="400" height="400"></canvas>
+
+    <script>
+        function parseTerm(term) {
+            const regex = /^(\d+\/\d+|\-?\d+(\.\d+)?|\-?\d+)?\s*\*?\s*\(\s*(-?\d+(\.\d+)?)\s*;\s*(-?\d+(\.\d+)?)\s*\)$/;
+            const match = term.trim().match(regex);
+            if (!match) return null;
+
+            const faktor = match[1] ? eval(match[1]) : 1;
+            const x = parseFloat(match[3]);
+            const y = parseFloat(match[5]);
+
+            return [faktor * x, faktor * y];
+        }
+
+        function berechneLinearkombination() {
+            const t1 = document.getElementById("term1").value;
+            const t2 = document.getElementById("term2").value;
+            const t3 = document.getElementById("term3").value;
+
+            const v1 = parseTerm(t1);
+            const v2 = parseTerm(t2);
+            const v3 = parseTerm(t3);
+
+            if (!v1 || !v2 || !v3) {
+                document.getElementById("ergebnis").innerHTML = "❌ Bitte überprüfe deine Eingaben. Alle Terme müssen vollständig sein (z. B. 2*(3;4))";
+                zeichneVektor([0, 0], [0, 0]); // Leere Zeichnung
+                return;
+            }
+
+            const sum = [
+                v1[0] + v2[0] + v3[0],
+                v1[1] + v2[1] + v3[1]
+            ];
+
+            const output = `
+                <strong>Ergebnis:</strong><br>
+                Vektor = (${sum[0].toFixed(2)}; ${sum[1].toFixed(2)})<br><br>
+                Die Linearkombination ergibt sich durch Addition der skalierten Vektoren:<br>
+                → = ${t1} + ${t2} + ${t3}
+            `;
+
+            document.getElementById("ergebnis").innerHTML = output;
+            zeichneVektor([0, 0], sum);
+        }
+
+        function zeichneVektor(start, ende) {
+    const canvas = document.getElementById("plot");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const scale = 20;
+    const originX = canvas.width / 2;
+    const originY = canvas.height / 2;
+
+    const toCanvasX = x => originX + x * scale;
+    const toCanvasY = y => originY - y * scale;
+
+    // Koordinatenachsen mit Beschriftung
+    ctx.strokeStyle = "#ccc";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, originY);
+    ctx.lineTo(canvas.width, originY);
+    ctx.moveTo(originX, 0);
+    ctx.lineTo(originX, canvas.height);
+    ctx.stroke();
+
+    // Beschriftung und Ticks
+    ctx.fillStyle = "#333";
+    ctx.font = "10px Arial";
+    for (let i = -10; i <= 10; i++) {
+        // X-Achse
+        const x = toCanvasX(i);
+        ctx.beginPath();
+        ctx.moveTo(x, originY - 3);
+        ctx.lineTo(x, originY + 3);
+        ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, originY + 12);
+
+        // Y-Achse
+        const y = toCanvasY(i);
+        ctx.beginPath();
+        ctx.moveTo(originX - 3, y);
+        ctx.lineTo(originX + 3, y);
+        ctx.stroke();
+        if (i !== 0) ctx.fillText(i, originX + 5, y + 3);
+    }
+
+    // Vektor zeichnen
+    ctx.strokeStyle = "green";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(toCanvasX(start[0]), toCanvasY(start[1]));
+    ctx.lineTo(toCanvasX(ende[0]), toCanvasY(ende[1]));
+    ctx.stroke();
+
+    // Vektor-Ende markieren
+    ctx.fillStyle = "green";
+    ctx.beginPath();
+    ctx.arc(toCanvasX(ende[0]), toCanvasY(ende[1]), 5, 0, 2 * Math.PI);
+    ctx.fill();
+}
+    </script>
+</body>
+</html>

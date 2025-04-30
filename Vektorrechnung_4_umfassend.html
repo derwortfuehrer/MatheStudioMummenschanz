@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Vektorarten erkennen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #eef;
+            border-left: 4px solid #3399ff;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px 10px;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 4: Vektorarten erkennen</h2>
+
+    <p>Gegeben sind folgende Vektoren:</p>
+    <ul>
+        <li>V1 = (–1; 3)</li>
+        <li>V2 = (3; 4)</li>
+        <li>V3 = (2; 1)</li>
+        <li>V4 = (1; 2)</li>
+        <li>V5 = (1; –1)</li>
+        <li>V6 = (–4; –3)</li>
+    </ul>
+
+    <p>Und folgende Punkte:</p>
+    <ul>
+        <li>P(–1; 1), Q(0; –2), R(1; 2), S(3; 4), T(4; 1)</li>
+    </ul>
+
+    <p><strong>Aufgabenstellung:</strong> Welcher Vektor ist:</p>
+    <ol>
+        <li>ein <strong>Ortsvektor</strong> zu einem Punkt</li>
+        <li>ein <strong>Verbindungsvektor</strong> zwischen zwei Punkten</li>
+        <li>ein <strong>Gegenvektor eines Ortsvektors</strong></li>
+        <li>ein <strong>Gegenvektor eines Verbindungsvektors</strong></li>
+    </ol>
+
+    <button onclick="zeigeVektoren('ortsvektor')">Ortsvektoren</button>
+    <button onclick="zeigeVektoren('verbindungsvektor')">Verbindungsvektor</button>
+    <button onclick="zeigeVektoren('gegen_orts')">Gegenvektor (Ortsvektor)</button>
+    <button onclick="zeigeVektoren('gegen_verbindung')">Gegenvektor (Verbindungsvektor)</button>
+
+    <div class="result" id="infofeld">
+        Klicke auf eine Schaltfläche, um die jeweiligen Vektoren im Koordinatensystem hervorzuheben.
+    </div>
+
+    <canvas id="plot" width="600" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('plot');
+        const ctx = canvas.getContext('2d');
+        const scale = 40;
+        const originX = canvas.width / 2;
+        const originY = canvas.height / 2;
+
+        const toCanvasX = x => originX + x * scale;
+        const toCanvasY = y => originY - y * scale;
+
+        const punkte = {
+            P: [-1, 1],
+            Q: [0, -2],
+            R: [1, 2],
+            S: [3, 4],
+            T: [4, 1]
+        };
+
+        const vektoren = {
+            V1: [-1, 3],
+            V2: [3, 4],
+            V3: [2, 1],
+            V4: [1, 2],
+            V5: [1, -1],
+            V6: [-4, -3]
+        };
+
+        function zeichneKoordinatensystem() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "#ccc";
+            ctx.lineWidth = 1;
+
+            // Achsen
+            ctx.beginPath();
+            ctx.moveTo(0, originY);
+            ctx.lineTo(canvas.width, originY);
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, canvas.height);
+            ctx.stroke();
+
+            // Achsenbeschriftung
+            ctx.fillStyle = "#000";
+            ctx.font = "10px Arial";
+            for (let i = -7; i <= 7; i++) {
+                if (i !== 0) {
+                    ctx.fillText(i, toCanvasX(i) - 3, originY + 12); // x-Achse
+                    ctx.fillText(i, originX + 5, toCanvasY(i) + 3);  // y-Achse
+                }
+                // kleine Striche
+                ctx.beginPath();
+                ctx.moveTo(toCanvasX(i), originY - 3);
+                ctx.lineTo(toCanvasX(i), originY + 3);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(originX - 3, toCanvasY(i));
+                ctx.lineTo(originX + 3, toCanvasY(i));
+                ctx.stroke();
+            }
+
+            // Punkte zeichnen
+            for (const [name, [x, y]] of Object.entries(punkte)) {
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc(toCanvasX(x), toCanvasY(y), 4, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillText(name, toCanvasX(x) + 6, toCanvasY(y) - 6);
+            }
+        }
+
+        function zeichneVektor([x, y], farbe, label) {
+            ctx.strokeStyle = farbe;
+            ctx.fillStyle = farbe;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(toCanvasX(0), toCanvasY(0));
+            ctx.lineTo(toCanvasX(x), toCanvasY(y));
+            ctx.stroke();
+            ctx.fillText(label, toCanvasX(x) + 5, toCanvasY(y) - 5);
+        }
+
+        function zeigeVektoren(typ) {
+            zeichneKoordinatensystem();
+
+            let info = "";
+
+            switch (typ) {
+                case "ortsvektor":
+                    zeichneVektor(punkte["S"], "blue", "V2");
+                    zeichneVektor(punkte["R"], "green", "V3");
+                    info = `
+                        <strong>Ortsvektor:</strong> Ein Vektor vom Ursprung zu einem Punkt.<br>
+                        Beispiele: V2 = (3;4) → zeigt zu S(3;4), V3 = (2;1) → zeigt zu R(2;1).
+                    `;
+                    break;
+
+                case "verbindungsvektor":
+                    zeichneVektor([1, 2], "orange", "V4"); // z.B. von Q(0;-2) → R(1;2)
+                    zeichneVektor([1, -1], "orange", "V5"); // z.B. von R(1;2) → T(4;1)
+                    info = `
+                        <strong>Verbindungsvektor:</strong> Zeigt von einem Punkt zu einem anderen.<br>
+                        Beispiel: V4 = (1;2) passt zu QR, V5 = (1;–1) passt zu RT.
+                    `;
+                    break;
+
+                case "gegen_orts":
+                    zeichneVektor([-3, -4], "purple", "–V2");
+                    zeichneVektor([-2, -1], "purple", "–V3");
+                    info = `
+                        <strong>Gegenvektor eines Ortsvektors:</strong> Zeigt vom Zielpunkt zurück zum Ursprung.<br>
+                        Beispiel: –V2 = (–3;–4) → zeigt zurück von S nach Ursprung.
+                    `;
+                    break;
+
+                case "gegen_verbindung":
+                    zeichneVektor([-1, -2], "red", "–V4");
+                    zeichneVektor([-1, 1], "red", "–V5");
+                    info = `
+                        <strong>Gegenvektor eines Verbindungsvektors:</strong> zeigt in die entgegengesetzte Richtung.<br>
+                        Beispiel: –V4 = (–1;–2), –V5 = (–1;1).
+                    `;
+                    break;
+            }
+
+            document.getElementById("infofeld").innerHTML = info;
+        }
+
+        zeichneKoordinatensystem(); // Initiale Zeichnung
+    </script>
+</body>
+</html>

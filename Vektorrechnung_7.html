@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>3D-Punkte & Lagebeziehung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .result {
+            background-color: #eef;
+            padding: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #3399ff;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        input {
+            margin: 5px;
+            width: 60px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 7: Punkte im 3D-Raum und Lagebeziehungen</h2>
+
+    <p><strong>a)</strong> Zeichne die Punkte A(2|3|4), B(–2|0|1), C(3|–1|0) und D(0|0|–3).</p>
+    <p><strong>b)</strong> Beschreibe die Lage der Punkte B, C und D.</p>
+    <p><strong>c)</strong> Gib 3 weitere Punkte an, die mit A im Raum zusammenfallen:</p>
+
+    <div>
+        <label>Punkt 1:</label>
+        <input type="number" id="x1">|
+        <input type="number" id="y1">|
+        <input type="number" id="z1">
+    </div>
+    <div>
+        <label>Punkt 2:</label>
+        <input type="number" id="x2">|
+        <input type="number" id="y2">|
+        <input type="number" id="z2">
+    </div>
+    <div>
+        <label>Punkt 3:</label>
+        <input type="number" id="x3">|
+        <input type="number" id="y3">|
+        <input type="number" id="z3">
+    </div>
+    <br>
+    <button onclick="prüfeZusammenfall()">Prüfen</button>
+
+    <div class="result" id="infofeld">
+        Hinweis: Zwei Punkte fallen im Raum zusammen, wenn ihre Koordinaten exakt gleich sind.
+    </div>
+
+    <canvas id="plot" width="500" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById("plot");
+        const ctx = canvas.getContext("2d");
+
+        const origin = { x: 250, y: 250 };
+        const scale = 20;
+
+        function iso3D(x, y, z) {
+            const isoX = origin.x + (x - y) * scale * 0.7;
+            const isoY = origin.y + (x + y) * scale * 0.4 - z * scale;
+            return { x: isoX, y: isoY };
+        }
+
+        const punkte = {
+            A: [2, 3, 4],
+            B: [-2, 0, 1],
+            C: [3, -1, 0],
+            D: [0, 0, -3]
+        };
+
+        function zeichne3DSystem() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "#999";
+            ctx.lineWidth = 1;
+
+            // Achsen
+            const achsen = [
+                { x: 1, y: 0, z: 0, label: "x" },
+                { x: 0, y: 1, z: 0, label: "y" },
+                { x: 0, y: 0, z: 1, label: "z" }
+            ];
+
+            for (let achse of achsen) {
+                const end = iso3D(achse.x * 6, achse.y * 6, achse.z * 6);
+                ctx.beginPath();
+                ctx.moveTo(origin.x, origin.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.stroke();
+                ctx.fillText(achse.label, end.x + 5, end.y + 5);
+            }
+
+            // Punkte zeichnen
+            for (let name in punkte) {
+                const [x, y, z] = punkte[name];
+                const p = iso3D(x, y, z);
+                ctx.fillStyle = name === "A" ? "blue" : "black";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillText(name, p.x + 6, p.y - 6);
+            }
+        }
+
+        function prüfeZusammenfall() {
+            const A = punkte.A.toString();
+
+            let ausgabe = "<strong>Zusammenfall mit A(2|3|4):</strong><br>";
+            for (let i = 1; i <= 3; i++) {
+                const x = document.getElementById("x" + i).value;
+                const y = document.getElementById("y" + i).value;
+                const z = document.getElementById("z" + i).value;
+
+                const pointStr = [x, y, z].toString();
+                if (pointStr === A) {
+                    ausgabe += `✅ Punkt ${i} fällt mit A zusammen: (${x}|${y}|${z})<br>`;
+                } else {
+                    ausgabe += `❌ Punkt ${i} ist verschieden: (${x}|${y}|${z})<br>`;
+                }
+            }
+
+           // b) Lagebeschreibung
+ausgabe += "<br><strong>b)</strong> Die Punkte B, C und D liegen nicht auf einer Geraden, aber wahrscheinlich in einer gemeinsamen Ebene.<br>" +
+           "Eine genauere Untersuchung (z. B. über das Spatprodukt) kann zeigen, ob sie <em>koplanar</em> sind.";
+
+// c) Beispielhafte Lösung
+ausgabe += "<br><br><strong>c)</strong> Beispielhafte Punkte, die mit A(2|3|4) zusammenfallen:<br>";
+ausgabe += "✅ (2|3|4), z. B.:<br>";
+ausgabe += "– 2 × (1|1.5|2)<br>";
+ausgabe += "– (1+1|1+2|2+2)<br>";
+ausgabe += "– Mittelwert von (1|2|3) und (3|4|5)<br>";
+
+            document.getElementById("infofeld").innerHTML = ausgabe;
+        }
+
+        zeichne3DSystem();
+        // Achsenbeschriftung mit Zahlen
+ctx.fillStyle = "#333";
+ctx.font = "10px Arial";
+for (let i = 1; i <= 5; i++) {
+    // X-Achse
+    let px = iso3D(i, 0, 0);
+    ctx.fillText(i, px.x + 2, px.y + 12);
+
+    // Y-Achse
+    let py = iso3D(0, i, 0);
+    ctx.fillText(i, py.x + 2, py.y + 12);
+
+    // Z-Achse
+    let pz = iso3D(0, 0, i);
+    ctx.fillText(i, pz.x + 2, pz.y + 2);
+}
+
+    </script>
+</body>
+</html>

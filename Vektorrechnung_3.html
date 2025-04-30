@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Spiegelung an einem Zentrum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input {
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        canvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Aufgabe 3: Spiegelung eines Punktes A an Z</h2>
+    <p>Berechne die Koordinaten des gespiegelten Punktes A′, wenn A an Z gespiegelt wird.</p>
+
+    <h3>Beispiel: A(2;1), Z(4;0)</h3>
+
+    <h3>Punkt A:</h3>
+    <label for="x1">x₁:</label>
+    <input type="number" id="x1" value="2">
+    <label for="y1">y₁:</label>
+    <input type="number" id="y1" value="1">
+
+    <h3>Spiegelzentrum Z:</h3>
+    <label for="xz">x_z:</label>
+    <input type="number" id="xz" value="4">
+    <label for="yz">y_z:</label>
+    <input type="number" id="yz" value="0">
+
+    <br><br>
+    <button onclick="spieglePunkt()">Berechnen & Zeichnen</button>
+
+    <div class="result" id="ergebnis"></div>
+
+    <canvas id="plot" width="400" height="400"></canvas>
+
+    <script>
+        function spieglePunkt() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const xz = parseFloat(document.getElementById('xz').value);
+            const yz = parseFloat(document.getElementById('yz').value);
+
+            const xsp = 2 * xz - x1;
+            const ysp = 2 * yz - y1;
+
+            const output = `
+                <strong>Ergebnis:</strong><br>
+                Spiegelpunkt A′ = (${xsp}; ${ysp})<br><br>
+                <strong>Erklärung:</strong><br>
+                Eine Punktspiegelung an Z berechnet sich mit:<br>
+                A′ = 2·Z - A = (2·${xz} - ${x1}; 2·${yz} - ${y1}) = (${xsp}; ${ysp})<br>
+                Der Punkt A′ liegt symmetrisch zu A bezüglich Z.
+            `;
+
+            document.getElementById('ergebnis').innerHTML = output;
+            zeichneSpiegelung(x1, y1, xz, yz, xsp, ysp);
+        }
+
+        function zeichneSpiegelung(x1, y1, xz, yz, xsp, ysp) {
+            const canvas = document.getElementById('plot');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const scale = 20;
+            const originX = canvas.width / 2;
+            const originY = canvas.height / 2;
+
+            const toCanvasX = x => originX + x * scale;
+            const toCanvasY = y => originY - y * scale;
+
+            // Achsen
+            ctx.strokeStyle = "#ccc";
+            ctx.beginPath();
+            ctx.moveTo(0, originY);
+            ctx.lineTo(canvas.width, originY);
+            ctx.moveTo(originX, 0);
+            ctx.lineTo(originX, canvas.height);
+            ctx.stroke();
+
+            // Achsenbeschriftung
+            ctx.fillStyle = "#333";
+            ctx.font = "10px Arial";
+            for (let i = -10; i <= 10; i++) {
+                const x = toCanvasX(i);
+                ctx.beginPath();
+                ctx.moveTo(x, originY - 3);
+                ctx.lineTo(x, originY + 3);
+                ctx.stroke();
+                if (i !== 0) ctx.fillText(i, x - 3, originY + 12);
+
+                const y = toCanvasY(i);
+                ctx.beginPath();
+                ctx.moveTo(originX - 3, y);
+                ctx.lineTo(originX + 3, y);
+                ctx.stroke();
+                if (i !== 0) ctx.fillText(i, originX + 5, y + 3);
+            }
+
+            // Punkt A
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(x1), toCanvasY(y1), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("A", toCanvasX(x1) + 6, toCanvasY(y1) - 6);
+
+            // Zentrum Z
+            ctx.fillStyle = "orange";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(xz), toCanvasY(yz), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("Z", toCanvasX(xz) + 6, toCanvasY(yz) - 6);
+
+            // Punkt A'
+            ctx.fillStyle = "green";
+            ctx.beginPath();
+            ctx.arc(toCanvasX(xsp), toCanvasY(ysp), 5, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillText("A′", toCanvasX(xsp) + 6, toCanvasY(ysp) - 6);
+
+            // Verbindende Hilfslinie
+            ctx.strokeStyle = "#666";
+            ctx.setLineDash([5, 3]);
+            ctx.beginPath();
+            ctx.moveTo(toCanvasX(x1), toCanvasY(y1));
+            ctx.lineTo(toCanvasX(xsp), toCanvasY(ysp));
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+    </script>
+</body>
+</html>
