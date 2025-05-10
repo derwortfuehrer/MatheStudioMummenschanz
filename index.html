@@ -65,11 +65,10 @@
   </style>
 </head>
 <body>
-
-<div class="zitat-box">
-  <div id="zitat-text" class="zitat-text"></div>
-  <div id="zitat-quelle" class="zitat-quelle"></div>
-</div>
+  <div class="zitat-box">
+    <div id="zitat-text" class="zitat-text"></div>
+    <div id="zitat-quelle" class="zitat-quelle"></div>
+  </div>
 
   <h1>📘 Interaktive Mathekarte – Vektorrechnung</h1>
   <iframe src="zitate.html" width="100%" height="200" style="border:none;"></iframe>
@@ -82,8 +81,6 @@
   </blockquote>
   <br>
   
-  
-  
   <div class="menu">
     <div class="card" onclick="showSection('aufgabe1')">🧮 Aufgabe 1<br>Verbindungsvektor</div>
     <div class="card" onclick="showSection('aufgabe2')">📍 Aufgabe 2<br>Mittelpunkt</div>
@@ -92,152 +89,199 @@
     <div class="card" onclick="showSection('aufgabe5')">🧭 Aufgabe 5<br>Fehlender Punkt</div>
     <div class="card" onclick="showSection('aufgabe6')">➕ Aufgabe 6<br>Linearkombination</div>
     <div class="card" onclick="showSection('aufgabe7')">📐 Aufgabe 7<br>3D-Lage</div>
+    <div class="card" onclick="showSection('aufgabe8')">✂️ Aufgabe 8<br>Schnittpunkt Geraden</div>
+    <div class="card" onclick="showSection('aufgabe9')">📏 Aufgabe 9<br>Winkel zwischen Geraden</div>
+    <div class="card" onclick="showSection('aufgabe10')">🧾 Aufgabe 10<br>Geradengleichung</div>
   </div>
 
   <section id="aufgabe1">
-  <h2>Aufgabe 1 – Verbindungsvektor</h2>
-  <p>Gib zwei Punkte A und B ein. Der Verbindungsvektor →AB wird berechnet und gezeichnet.</p>
-  <label for="x1_1">A: x₁</label>
-  <input type="number" id="x1_1" value="3">
-  <label for="y1_1">y₁</label>
-  <input type="number" id="y1_1" value="2">
-  <br>
-  <label for="x2_1">B: x₂</label>
-  <input type="number" id="x2_1" value="7">
-  <label for="y2_1">y₂</label>
-  <input type="number" id="y2_1" value="-3">
-  <br><br>
-  <button onclick="berechneVektor1()">Berechnen & Zeichnen</button>
-  <div class="result" id="ergebnis1"></div>
-  <canvas id="plot1" width="400" height="400"></canvas>
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
+    <h2>Aufgabe 1 – Verbindungsvektor</h2>
+    <p>Gib zwei Punkte A und B ein. Der Verbindungsvektor →AB wird berechnet und gezeichnet.</p>
+    <label for="x1_1">A: x₁</label>
+    <input type="number" id="x1_1" value="3">
+    <label for="y1_1">y₁</label>
+    <input type="number" id="y1_1" value="2">
+    <br>
+    <label for="x2_1">B: x₂</label>
+    <input type="number" id="x2_1" value="7">
+    <label for="y2_1">y₂</label>
+    <input type="number" id="y2_1" value="-3">
+    <br><br>
+    <button onclick="berechneVektor1()">Berechnen & Zeichnen</button>
+    <div class="result" id="ergebnis1"></div>
+    <canvas id="plot1" width="400" height="400"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
+
   <section id="aufgabe2">
-  <h2>Aufgabe 2 – Mittelpunkt</h2>
-  <p>Berechne den Mittelpunkt M der Strecke zwischen A und B.</p>
-  <label for="x1_2">A: x₁</label>
-  <input type="number" id="x1_2" value="1">
-  <label for="y1_2">y₁</label>
-  <input type="number" id="y1_2" value="4">
-  <br>
-  <label for="x2_2">B: x₂</label>
-  <input type="number" id="x2_2" value="5">
-  <label for="y2_2">y₂</label>
-  <input type="number" id="y2_2" value="6">
-  <br><br>
-  <button onclick="berechneMittelpunkt2()">Berechnen & Zeichnen</button>
-  <div class="result" id="ergebnis2"></div>
-  <canvas id="plot2" width="400" height="400"></canvas>
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
+    <h2>Aufgabe 2 – Mittelpunkt</h2>
+    <p>Berechne den Mittelpunkt M der Strecke zwischen A und B.</p>
+    <label for="x1_2">A: x₁</label>
+    <input type="number" id="x1_2" value="1">
+    <label for="y1_2">y₁</label>
+    <input type="number" id="y1_2" value="4">
+    <br>
+    <label for="x2_2">B: x₂</label>
+    <input type="number" id="x2_2" value="5">
+    <label for="y2_2">y₂</label>
+    <input type="number" id="y2_2" value="6">
+    <br><br>
+    <button onclick="berechneMittelpunkt2()">Berechnen & Zeichnen</button>
+    <div class="result" id="ergebnis2"></div>
+    <canvas id="plot2" width="400" height="400"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
+
   <section id="aufgabe3">
-  <h2>Aufgabe 3 – Spiegelung eines Punktes an Z</h2>
-  <p>Berechne die Koordinaten des gespiegelten Punktes A′, wenn A an Z gespiegelt wird.</p>
-  <label for="x1_3">A: x₁</label>
-  <input type="number" id="x1_3" value="2">
-  <label for="y1_3">y₁</label>
-  <input type="number" id="y1_3" value="1">
-  <br>
-  <label for="xz_3">Z: x<sub>Z</sub></label>
-  <input type="number" id="xz_3" value="4">
-  <label for="yz_3">y<sub>Z</sub></label>
-  <input type="number" id="yz_3" value="0">
-  <br><br>
-  <button onclick="spieglePunkt3()">Berechnen & Zeichnen</button>
-  <div class="result" id="ergebnis3"></div>
-  <canvas id="plot3" width="400" height="400"></canvas>
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
+    <h2>Aufgabe 3 – Spiegelung eines Punktes an Z</h2>
+    <p>Berechne die Koordinaten des gespiegelten Punktes A′, wenn A an Z gespiegelt wird.</p>
+    <label for="x1_3">A: x₁</label>
+    <input type="number" id="x1_3" value="2">
+    <label for="y1_3">y₁</label>
+    <input type="number" id="y1_3" value="1">
+    <br>
+    <label for="xz_3">Z: x<sub>Z</sub></label>
+    <input type="number" id="xz_3" value="4">
+    <label for="yz_3">y<sub>Z</sub></label>
+    <input type="number" id="yz_3" value="0">
+    <br><br>
+    <button onclick="spieglePunkt3()">Berechnen & Zeichnen</button>
+    <div class="result" id="ergebnis3"></div>
+    <canvas id="plot3" width="400" height="400"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
+
   <section id="aufgabe4">
-  <h2>Aufgabe 4 – Vektorarten erkennen</h2>
-  <p>Wähle eine Kategorie aus und erkenne die zugehörigen Vektoren im Koordinatensystem.</p>
-  <button onclick="zeigeVektoren('ortsvektor')">Ortsvektoren</button>
-  <button onclick="zeigeVektoren('verbindungsvektor')">Verbindungsvektoren</button>
-  <button onclick="zeigeVektoren('gegen_orts')">Gegenvektoren (Ortsvektor)</button>
-  <button onclick="zeigeVektoren('gegen_verbindung')">Gegenvektoren (Verbindungsvektor)</button>
-  <div class="result" id="infofeld4">
-    Klicke auf eine Schaltfläche, um die jeweiligen Vektoren im Koordinatensystem hervorzuheben.
-  </div>
-  <canvas id="plot4" width="500" height="500"></canvas>
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
+    <h2>Aufgabe 4 – Vektorarten erkennen</h2>
+    <p>Wähle eine Kategorie aus und erkenne die zugehörigen Vektoren im Koordinatensystem.</p>
+    <button onclick="zeigeVektoren('ortsvektor')">Ortsvektoren</button>
+    <button onclick="zeigeVektoren('verbindungsvektor')">Verbindungsvektoren</button>
+    <button onclick="zeigeVektoren('gegen_orts')">Gegenvektoren (Ortsvektor)</button>
+    <button onclick="zeigeVektoren('gegen_verbindung')">Gegenvektoren (Verbindungsvektor)</button>
+    <div class="result" id="infofeld4">
+      Klicke auf eine Schaltfläche, um die jeweiligen Vektoren im Koordinatensystem hervorzuheben.
+    </div>
+    <canvas id="plot4" width="500" height="500"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
+
   <section id="aufgabe5">
-  <h2>Aufgabe 5 – Fehlender Punkt bei gegebenem Mittelpunkt</h2>
-  <p>Gegeben ist der Mittelpunkt M einer Strecke und ein Punkt A oder B. Berechne den fehlenden Punkt.</p>
-  <label for="mx_5">M: x</label>
-  <input type="number" id="mx_5" value="3">
-  <label for="my_5">y</label>
-  <input type="number" id="my_5" value="-1">
-  <br>
-  <label for="px_5">A/B: x</label>
-  <input type="number" id="px_5" value="2">
-  <label for="py_5">y</label>
-  <input type="number" id="py_5" value="2">
-  <br><br>
-  <button onclick="berechneFehlendenPunkt5()">Berechnen & Zeichnen</button>
-  <div class="result" id="ergebnis5"></div>
-  <canvas id="plot5" width="400" height="400"></canvas>
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
+    <h2>Aufgabe 5 – Fehlender Punkt bei gegebenem Mittelpunkt</h2>
+    <p>Gegeben ist der Mittelpunkt M einer Strecke und ein Punkt A oder B. Berechne den fehlenden Punkt.</p>
+    <label for="mx_5">M: x</label>
+    <input type="number" id="mx_5" value="3">
+    <label for="my_5">y</label>
+    <input type="number" id="my_5" value="-1">
+    <br>
+    <label for="px_5">A/B: x</label>
+    <input type="number" id="px_5" value="2">
+    <label for="py_5">y</label>
+    <input type="number" id="py_5" value="2">
+    <br><br>
+    <button onclick="berechneFehlendenPunkt5()">Berechnen & Zeichnen</button>
+    <div class="result" id="ergebnis5"></div>
+    <canvas id="plot5" width="400" height="400"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
+
   <section id="aufgabe6">
     <h2>Aufgabe 6 – Linearkombination von Vektoren</h2>
-<p>Gib drei Terme einer Linearkombination ein, z. B.: <code>1/7*(14;-49)</code>, <code>(-2;5)</code>, <code>(1;0)</code></p>
-
-<label for="term1">Term 1:</label>
-<input type="text" id="term1" value="1/7*(14;-49)">
-<br>
-<label for="term2">Term 2:</label>
-<input type="text" id="term2" value="(-2;5)">
-<br>
-<label for="term3">Term 3:</label>
-<input type="text" id="term3" value="(1;0)">
-<br><br>
-
-<button onclick="berechneLinearkombination6()">Berechnen & Zeichnen</button>
-
-<div class="result" id="ergebnis6"></div>
-
-<canvas id="plot6" width="400" height="400"></canvas>
-
-<span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-
+    <p>Gib drei Terme einer Linearkombination ein, z. B.: <code>1/7*(14;-49)</code>, <code>(-2;5)</code>, <code>(1;0)</code></p>
+    <label for="term1">Term 1:</label>
+    <input type="text" id="term1" value="1/7*(14;-49)">
+    <br>
+    <label for="term2">Term 2:</label>
+    <input type="text" id="term2" value="(-2;5)">
+    <br>
+    <label for="term3">Term 3:</label>
+    <input type="text" id="term3" value="(1;0)">
+    <br><br>
+    <button onclick="berechneLinearkombination6()">Berechnen & Zeichnen</button>
+    <div class="result" id="ergebnis6"></div>
+    <canvas id="plot6" width="400" height="400"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
   </section>
+
   <section id="aufgabe7">
-  <h2>Aufgabe 7 – 3D-Punkte & Lage</h2>
-  <p><strong>a)</strong> Zeichne die Punkte A(2|3|4), B(–2|0|1), C(3|–1|0) und D(0|0|–3).</p>
-  <p><strong>b)</strong> Beschreibe die Lage der Punkte B, C und D.</p>
-  <p><strong>c)</strong> Gib 3 weitere Punkte an, die mit A im Raum zusammenfallen:</p>
+    <h2>Aufgabe 7 – 3D-Punkte & Lage</h2>
+    <p><strong>a)</strong> Zeichne die Punkte A(2|3|4), B(–2|0|1), C(3|–1|0) und D(0|0|–3).</p>
+    <p><strong>b)</strong> Beschreibe die Lage der Punkte B, C und D.</p>
+    <p><strong>c)</strong> Gib 3 weitere Punkte an, die mit A im Raum zusammenfallen:</p>
+    <div>
+      <label>Punkt 1:</label>
+      <input type="number" id="x1_7">|
+      <input type="number" id="y1_7">|
+      <input type="number" id="z1_7">
+    </div>
+    <div>
+      <label>Punkt 2:</label>
+      <input type="number" id="x2_7">|
+      <input type="number" id="y2_7">|
+      <input type="number" id="z2_7">
+    </div>
+    <div>
+      <label>Punkt 3:</label>
+      <input type="number" id="x3_7">|
+      <input type="number" id="y3_7">|
+      <input type="number" id="z3_7">
+    </div>
+    <br>
+    <button onclick="prüfeZusammenfall7()">Prüfen</button>
+    <div class="result" id="infofeld7">
+      Hinweis: Zwei Punkte fallen im Raum zusammen, wenn ihre Koordinaten exakt gleich sind.
+    </div>
+    <canvas id="plot7" width="500" height="500"></canvas>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
 
-  <div>
-    <label>Punkt 1:</label>
-    <input type="number" id="x1_7">|
-    <input type="number" id="y1_7">|
-    <input type="number" id="z1_7">
-  </div>
-  <div>
-    <label>Punkt 2:</label>
-    <input type="number" id="x2_7">|
-    <input type="number" id="y2_7">|
-    <input type="number" id="z2_7">
-  </div>
-  <div>
-    <label>Punkt 3:</label>
-    <input type="number" id="x3_7">|
-    <input type="number" id="y3_7">|
-    <input type="number" id="z3_7">
-  </div>
-  <br>
-  <button onclick="prüfeZusammenfall7()">Prüfen</button>
+  <section id="aufgabe8">
+    <h2>Aufgabe 8 – Schnittpunkt zweier Geraden</h2>
+    <div>
+      r₁ = <input id="a1" value="1"> + s * <input id="v1" value="2">
+      <input id="a2" value="2"> + s * <input id="v2" value="2">
+      <input id="a3" value="-1"> + s * <input id="v3" value="1">
+    </div>
+    <div>
+      r₂ = <input id="b1" value="-1"> + t * <input id="w1" value="4">
+      <input id="b2" value="-2"> + t * <input id="w2" value="6">
+      <input id="b3" value="3"> + t * <input id="w3" value="-3">
+    </div>
+    <button onclick="berechneSchnittpunkt()">Berechnen</button>
+    <div class="result" id="output1"></div>
+    <div id="plot8" style="width:100%; height:300px;"></div>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
 
-  <div class="result" id="infofeld7">
-    Hinweis: Zwei Punkte fallen im Raum zusammen, wenn ihre Koordinaten exakt gleich sind.
-  </div>
+  <section id="aufgabe9">
+    <h2>Aufgabe 9 – Winkel zwischen zwei Geraden</h2>
+    <div>
+      v = <input id="vA1" value="2"> <input id="vA2" value="2"> <input id="vA3" value="1">
+    </div>
+    <div>
+      w = <input id="wA1" value="4"> <input id="wA2" value="6"> <input id="wA3" value="-3">
+    </div>
+    <button onclick="berechneWinkel()">Berechnen</button>
+    <div class="result" id="output2"></div>
+    <div id="plot9" style="width:100%; height:300px;"></div>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
 
-  <canvas id="plot7" width="500" height="500"></canvas>
+  <section id="aufgabe10">
+    <h2>Aufgabe 10 – Geradengleichung durch zwei Punkte</h2>
+    <div>
+      A = <input id="ga1" value="1"> <input id="ga2" value="2"> <input id="ga3" value="3">
+    </div>
+    <div>
+      B = <input id="gb1" value="4"> <input id="gb2" value="5"> <input id="gb3" value="6">
+    </div>
+    <button onclick="berechneGerade()">Berechnen</button>
+    <div class="result" id="output3"></div>
+    <div id="plot10" style="width:100%; height:300px;"></div>
+    <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
+  </section>
 
-  <span class="back" onclick="backToMenu()">← zurück zum Menü</span>
-</section>
-
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@9.4.4/lib/browser/math.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
   <script>
     function showSection(id) {
       document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
@@ -247,482 +291,594 @@
     function backToMenu() {
       document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
     }
-  function berechneVektor1() {
-  const x1 = parseFloat(document.getElementById('x1_1').value);
-  const y1 = parseFloat(document.getElementById('y1_1').value);
-  const x2 = parseFloat(document.getElementById('x2_1').value);
-  const y2 = parseFloat(document.getElementById('y2_1').value);
-  const vx = x2 - x1;
-  const vy = y2 - y1;
-  document.getElementById('ergebnis1').innerHTML =
-    `<strong>→AB = (${vx}; ${vy})</strong><br>Erklärung: B - A = (${x2} - ${x1}, ${y2} - ${y1})`;
 
-  const canvas = document.getElementById('plot1');
-  const ctx = canvas.getContext('2d');
-  const scale = 20;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function berechneVektor1() {
+      const x1 = parseFloat(document.getElementById('x1_1').value);
+      const y1 = parseFloat(document.getElementById('y1_1').value);
+      const x2 = parseFloat(document.getElementById('x2_1').value);
+      const y2 = parseFloat(document.getElementById('y2_1').value);
+      const vx = x2 - x1;
+      const vy = y2 - y1;
+      document.getElementById('ergebnis1').innerHTML =
+        `<strong>→AB = (${vx}; ${vy})</strong><br>Erklärung: B - A = (${x2} - ${x1}, ${y2} - ${y1})`;
 
-  // Achsen
-  ctx.strokeStyle = "#ccc";
-  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+      const canvas = document.getElementById('plot1');
+      const ctx = canvas.getContext('2d');
+      const scale = 20;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Beschriftung
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -10; i <= 10; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
+      // Achsen
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
 
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
+      // Beschriftung
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -10; i <= 10; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
 
-  // Punkte A & B
-  ctx.fillStyle = "blue";
-  ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
 
-  ctx.fillStyle = "red";
-  ctx.beginPath(); ctx.arc(toX(x2), toY(y2), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("B", toX(x2) + 5, toY(y2) - 5);
+      // Punkte A & B
+      ctx.fillStyle = "blue";
+      ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
 
-  // Vektor
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(x2), toY(y2)); ctx.stroke();
-}
-function berechneMittelpunkt2() {
-  const x1 = parseFloat(document.getElementById('x1_2').value);
-  const y1 = parseFloat(document.getElementById('y1_2').value);
-  const x2 = parseFloat(document.getElementById('x2_2').value);
-  const y2 = parseFloat(document.getElementById('y2_2').value);
-  const mx = (x1 + x2) / 2;
-  const my = (y1 + y2) / 2;
-  document.getElementById('ergebnis2').innerHTML =
-    `<strong>M = (${mx}; ${my})</strong><br>M = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)`;
+      ctx.fillStyle = "red";
+      ctx.beginPath(); ctx.arc(toX(x2), toY(y2), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("B", toX(x2) + 5, toY(y2) - 5);
 
-  const canvas = document.getElementById('plot2');
-  const ctx = canvas.getContext('2d');
-  const scale = 20;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Achsen
-  ctx.strokeStyle = "#ccc";
-  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
-
-  // Beschriftung
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -10; i <= 10; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
-
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
-
-  // Punkte A, B, M
-  ctx.fillStyle = "blue";
-  ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
-
-  ctx.fillStyle = "red";
-  ctx.beginPath(); ctx.arc(toX(x2), toY(y2), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("B", toX(x2) + 5, toY(y2) - 5);
-
-  ctx.fillStyle = "green";
-  ctx.beginPath(); ctx.arc(toX(mx), toY(my), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("M", toX(mx) + 5, toY(my) - 5);
-
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 1.5;
-  ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(x2), toY(y2)); ctx.stroke();
-}
-function spieglePunkt3() {
-  const x1 = parseFloat(document.getElementById('x1_3').value);
-  const y1 = parseFloat(document.getElementById('y1_3').value);
-  const xz = parseFloat(document.getElementById('xz_3').value);
-  const yz = parseFloat(document.getElementById('yz_3').value);
-  const xsp = 2 * xz - x1;
-  const ysp = 2 * yz - y1;
-
-  const output = `
-    <strong>Spiegelpunkt A′ = (${xsp}; ${ysp})</strong><br>
-    Erklärung: A′ = 2·Z - A = (2·${xz} - ${x1}; 2·${yz} - ${y1}) = (${xsp}; ${ysp})`;
-  document.getElementById('ergebnis3').innerHTML = output;
-
-  const canvas = document.getElementById('plot3');
-  const ctx = canvas.getContext('2d');
-  const scale = 20;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Achsen
-  ctx.strokeStyle = "#ccc";
-  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
-
-  // Beschriftung
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -10; i <= 10; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
-
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
-
-  // Punkt A
-  ctx.fillStyle = "blue";
-  ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
-
-  // Zentrum Z
-  ctx.fillStyle = "orange";
-  ctx.beginPath(); ctx.arc(toX(xz), toY(yz), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("Z", toX(xz) + 5, toY(yz) - 5);
-
-  // Spiegelpunkt A′
-  ctx.fillStyle = "green";
-  ctx.beginPath(); ctx.arc(toX(xsp), toY(ysp), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("A′", toX(xsp) + 5, toY(ysp) - 5);
-
-  // Verbindungslinie A ↔ A′
-  ctx.strokeStyle = "#666";
-  ctx.setLineDash([5, 3]);
-  ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(xsp), toY(ysp)); ctx.stroke();
-  ctx.setLineDash([]);
-}
-const punkte4 = {
-  P: [-1, 1], Q: [0, -2], R: [1, 2], S: [3, 4], T: [4, 1]
-};
-const vektoren4 = {
-  V1: [-1, 3], V2: [3, 4], V3: [2, 1], V4: [1, 2], V5: [1, -1], V6: [-4, -3]
-};
-
-function zeigeVektoren(typ) {
-  const canvas = document.getElementById('plot4');
-  const ctx = canvas.getContext('2d');
-  const scale = 40;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Achsen
-  ctx.strokeStyle = "#ccc";
-  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
-
-  // Achsenbeschriftung & Ticks
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -6; i <= 6; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
-
-  // Punkte
-  for (const [name, [x, y]] of Object.entries(punkte4)) {
-    ctx.fillStyle = "black";
-    ctx.beginPath(); ctx.arc(toX(x), toY(y), 4, 0, 2 * Math.PI); ctx.fill();
-    ctx.fillText(name, toX(x) + 6, toY(y) - 6);
-  }
-
-  function zeichneVektor(x, y, farbe, label) {
-    ctx.strokeStyle = farbe;
-    ctx.fillStyle = farbe;
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(toX(0), toY(0)); ctx.lineTo(toX(x), toY(y)); ctx.stroke();
-    ctx.fillText(label, toX(x) + 5, toY(y) - 5);
-  }
-
-  let info = "";
-  switch (typ) {
-    case "ortsvektor":
-      zeichneVektor(3, 4, "blue", "V2");
-      zeichneVektor(2, 1, "green", "V3");
-      info = "<strong>Ortsvektor:</strong> Vom Ursprung zu einem Punkt → z. B. V2 → S, V3 → R";
-      break;
-    case "verbindungsvektor":
-      zeichneVektor(1, 2, "orange", "V4");
-      zeichneVektor(1, -1, "orange", "V5");
-      info = "<strong>Verbindungsvektor:</strong> Zwischen zwei Punkten → z. B. QR oder RT";
-      break;
-    case "gegen_orts":
-      zeichneVektor(-3, -4, "purple", "–V2");
-      zeichneVektor(-2, -1, "purple", "–V3");
-      info = "<strong>Gegenvektor zu Ortsvektor:</strong> Rückweg vom Ziel zum Ursprung.";
-      break;
-    case "gegen_verbindung":
-      zeichneVektor(-1, -2, "red", "–V4");
-      zeichneVektor(-1, 1, "red", "–V5");
-      info = "<strong>Gegenvektor zu Verbindungsvektor:</strong> zeigt in entgegengesetzte Richtung.";
-      break;
-  }
-  document.getElementById("infofeld4").innerHTML = info;
-}
-function berechneFehlendenPunkt5() {
-  const mx = parseFloat(document.getElementById('mx_5').value);
-  const my = parseFloat(document.getElementById('my_5').value);
-  const px = parseFloat(document.getElementById('px_5').value);
-  const py = parseFloat(document.getElementById('py_5').value);
-  const fx = 2 * mx - px;
-  const fy = 2 * my - py;
-
-  document.getElementById('ergebnis5').innerHTML =
-    `<strong>Fehlender Punkt = (${fx}; ${fy})</strong><br>
-    Erklärung: Mittelpunkt M = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)<br>
-    Rückrechnung: x₂ = 2·mₓ – x₁ = ${fx}, y₂ = 2·mᵧ – y₁ = ${fy}`;
-
-  const canvas = document.getElementById('plot5');
-  const ctx = canvas.getContext('2d');
-  const scale = 20;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Achsen
-  ctx.strokeStyle = "#ccc";
-  ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
-
-  // Beschriftung
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -10; i <= 10; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
-
-  // Gegebener Punkt A/B
-  ctx.fillStyle = "blue";
-  ctx.beginPath(); ctx.arc(toX(px), toY(py), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("A/B", toX(px) + 5, toY(py) - 5);
-
-  // Mittelpunkt M
-  ctx.fillStyle = "orange";
-  ctx.beginPath(); ctx.arc(toX(mx), toY(my), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("M", toX(mx) + 5, toY(my) - 5);
-
-  // Fehlender Punkt B/A
-  ctx.fillStyle = "green";
-  ctx.beginPath(); ctx.arc(toX(fx), toY(fy), 5, 0, 2 * Math.PI); ctx.fill();
-  ctx.fillText("B/A", toX(fx) + 5, toY(fy) - 5);
-
-  // Linie A ↔ B
-  ctx.strokeStyle = "black";
-  ctx.beginPath(); ctx.moveTo(toX(px), toY(py)); ctx.lineTo(toX(fx), toY(fy)); ctx.stroke();
-}
-const canvas7 = document.getElementById("plot7");
-const ctx7 = canvas7.getContext("2d");
-const origin7 = { x: 250, y: 250 };
-const scale7 = 20;
-
-function iso3D(x, y, z) {
-  const isoX = origin7.x + (x - y) * scale7 * 0.7;
-  const isoY = origin7.y + (x + y) * scale7 * 0.4 - z * scale7;
-  return { x: isoX, y: isoY };
-}
-
-const punkte7 = {
-  A: [2, 3, 4], B: [-2, 0, 1], C: [3, -1, 0], D: [0, 0, -3]
-};
-
-function zeichne3DSystem7() {
-  ctx7.clearRect(0, 0, canvas7.width, canvas7.height);
-  ctx7.strokeStyle = "#999";
-  ctx7.lineWidth = 1;
-
-  // Achsen
-  const achsen = [
-    { x: 1, y: 0, z: 0, label: "x" },
-    { x: 0, y: 1, z: 0, label: "y" },
-    { x: 0, y: 0, z: 1, label: "z" }
-  ];
-
-  for (let achse of achsen) {
-    const end = iso3D(achse.x * 6, achse.y * 6, achse.z * 6);
-    ctx7.beginPath();
-    ctx7.moveTo(origin7.x, origin7.y);
-    ctx7.lineTo(end.x, end.y);
-    ctx7.stroke();
-    ctx7.fillText(achse.label, end.x + 5, end.y + 5);
-  }
-
-  // Punkte
-  for (let name in punkte7) {
-    const [x, y, z] = punkte7[name];
-    const p = iso3D(x, y, z);
-    ctx7.fillStyle = name === "A" ? "blue" : "black";
-    ctx7.beginPath();
-    ctx7.arc(p.x, p.y, 5, 0, 2 * Math.PI);
-    ctx7.fill();
-    ctx7.fillText(name, p.x + 6, p.y - 6);
-  }
-
-  // Zahlen an Achsen
-  ctx7.fillStyle = "#333";
-  ctx7.font = "10px Arial";
-  for (let i = 1; i <= 5; i++) {
-    const px = iso3D(i, 0, 0);
-    const py = iso3D(0, i, 0);
-    const pz = iso3D(0, 0, i);
-    ctx7.fillText(i, px.x + 2, px.y + 12);
-    ctx7.fillText(i, py.x + 2, py.y + 12);
-    ctx7.fillText(i, pz.x + 2, pz.y + 2);
-  }
-}
-
-function prüfeZusammenfall7() {
-  const A = punkte7.A.toString();
-  let ausgabe = "<strong>Zusammenfall mit A(2|3|4):</strong><br>";
-
-  for (let i = 1; i <= 3; i++) {
-    const x = document.getElementById("x" + i + "_7").value;
-    const y = document.getElementById("y" + i + "_7").value;
-    const z = document.getElementById("z" + i + "_7").value;
-    const pointStr = [x, y, z].toString();
-    if (pointStr === A) {
-      ausgabe += `✅ Punkt ${i} fällt mit A zusammen: (${x}|${y}|${z})<br>`;
-    } else {
-      ausgabe += `❌ Punkt ${i} ist verschieden: (${x}|${y}|${z})<br>`;
+      // Vektor
+      ctx.strokeStyle = "green";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(x2), toY(y2)); ctx.stroke();
     }
-  }
 
-  ausgabe += "<br><strong>b)</strong> Punkte B, C und D liegen vermutlich in einer Ebene (koplanar).<br>";
-  ausgabe += "<br><strong>c)</strong> Beispielhafte Punkte für A:<br>– (2|3|4), z. B. (1+1|1+2|2+2), Mittelwert von (1|2|3) und (3|4|5) usw.";
-  document.getElementById("infofeld7").innerHTML = ausgabe;
-}
+    function berechneMittelpunkt2() {
+      const x1 = parseFloat(document.getElementById('x1_2').value);
+      const y1 = parseFloat(document.getElementById('y1_2').value);
+      const x2 = parseFloat(document.getElementById('x2_2').value);
+      const y2 = parseFloat(document.getElementById('y2_2').value);
+      const mx = (x1 + x2) / 2;
+      const my = (y1 + y2) / 2;
+      document.getElementById('ergebnis2').innerHTML =
+        `<strong>M = (${mx}; ${my})</strong><br>M = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)`;
 
-zeichne3DSystem7();
-function parseTerm6(term) {
-  const regex = /^(\d+\/\d+|\-?\d+(\.\d+)?|\-?\d+)?\s*\*?\s*\(\s*(-?\d+(\.\d+)?)\s*;\s*(-?\d+(\.\d+)?)\s*\)$/;
-  const match = term.trim().match(regex);
-  if (!match) return null;
+      const canvas = document.getElementById('plot2');
+      const ctx = canvas.getContext('2d');
+      const scale = 20;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  const faktor = match[1] ? eval(match[1]) : 1;
-  const x = parseFloat(match[3]);
-  const y = parseFloat(match[5]);
+      // Achsen
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
 
-  return [faktor * x, faktor * y];
-}
+      // Beschriftung
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -10; i <= 10; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
 
-function berechneLinearkombination6() {
-  const t1 = document.getElementById("term1").value;
-  const t2 = document.getElementById("term2").value;
-  const t3 = document.getElementById("term3").value;
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
 
-  const v1 = parseTerm6(t1);
-  const v2 = parseTerm6(t2);
-  const v3 = parseTerm6(t3);
+      // Punkte A, B, M
+      ctx.fillStyle = "blue";
+      ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
 
-  if (!v1 || !v2 || !v3) {
-    document.getElementById("ergebnis6").innerHTML = "❌ Bitte überprüfe deine Eingaben. Format: z. B. 2*(3;4)";
-    zeichneVektor6([0, 0], [0, 0]); // leeres Feld
-    return;
-  }
+      ctx.fillStyle = "red";
+      ctx.beginPath(); ctx.arc(toX(x2), toY(y2), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("B", toX(x2) + 5, toY(y2) - 5);
 
-  const sum = [
-    v1[0] + v2[0] + v3[0],
-    v1[1] + v2[1] + v3[1]
-  ];
+      ctx.fillStyle = "green";
+      ctx.beginPath(); ctx.arc(toX(mx), toY(my), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("M", toX(mx) + 5, toY(my) - 5);
 
-  const output = `
-    <strong>Ergebnis:</strong><br>
-    Vektor = (${sum[0].toFixed(2)}; ${sum[1].toFixed(2)})<br><br>
-    Die Linearkombination ergibt sich durch Addition:<br>
-    → = ${t1} + ${t2} + ${t3}
-  `;
+      ctx.strokeStyle = "black";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(x2), toY(y2)); ctx.stroke();
+    }
 
-  document.getElementById("ergebnis6").innerHTML = output;
-  zeichneVektor6([0, 0], sum);
-}
+    function spieglePunkt3() {
+      const x1 = parseFloat(document.getElementById('x1_3').value);
+      const y1 = parseFloat(document.getElementById('y1_3').value);
+      const xz = parseFloat(document.getElementById('xz_3').value);
+      const yz = parseFloat(document.getElementById('yz_3').value);
+      const xsp = 2 * xz - x1;
+      const ysp = 2 * yz - y1;
 
-function zeichneVektor6(start, ende) {
-  const canvas = document.getElementById("plot6");
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const output = `
+        <strong>Spiegelpunkt A′ = (${xsp}; ${ysp})</strong><br>
+        Erklärung: A′ = 2·Z - A = (2·${xz} - ${x1}; 2·${yz} - ${y1}) = (${xsp}; ${ysp})`;
+      document.getElementById('ergebnis3').innerHTML = output;
 
-  const scale = 20;
-  const ox = canvas.width / 2;
-  const oy = canvas.height / 2;
-  const toX = x => ox + x * scale;
-  const toY = y => oy - y * scale;
+      const canvas = document.getElementById('plot3');
+      const ctx = canvas.getContext('2d');
+      const scale = 20;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Koordinatenachsen
-  ctx.strokeStyle = "#ccc";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, oy);
-  ctx.lineTo(canvas.width, oy);
-  ctx.moveTo(ox, 0);
-  ctx.lineTo(ox, canvas.height);
-  ctx.stroke();
+      // Achsen
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
 
-  // Beschriftung
-  ctx.fillStyle = "#333";
-  ctx.font = "10px Arial";
-  for (let i = -10; i <= 10; i++) {
-    const x = toX(i);
-    ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
+      // Beschriftung
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -10; i <= 10; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
 
-    const y = toY(i);
-    ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
-    if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
-  }
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
 
-  // Vektor zeichnen
-  ctx.strokeStyle = "green";
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(toX(start[0]), toY(start[1]));
-  ctx.lineTo(toX(ende[0]), toY(ende[1]));
-  ctx.stroke();
+      // Punkt A
+      ctx.fillStyle = "blue";
+      ctx.beginPath(); ctx.arc(toX(x1), toY(y1), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("A", toX(x1) + 5, toY(y1) - 5);
 
-  ctx.fillStyle = "green";
-  ctx.beginPath();
-  ctx.arc(toX(ende[0]), toY(ende[1]), 5, 0, 2 * Math.PI);
-  ctx.fill();
-}
+      // Zentrum Z
+      ctx.fillStyle = "orange";
+      ctx.beginPath(); ctx.arc(toX(xz), toY(yz), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("Z", toX(xz) + 5, toY(yz) - 5);
 
-</script>
-<div style="text-align: center; margin-top: 20px;">
+      // Spiegelpunkt A′
+      ctx.fillStyle = "green";
+      ctx.beginPath(); ctx.arc(toX(xsp), toY(ysp), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("A′", toX(xsp) + 5, toY(ysp) - 5);
+
+      // Verbindungslinie A ↔ A′
+      ctx.strokeStyle = "#666";
+      ctx.setLineDash([5, 3]);
+      ctx.beginPath(); ctx.moveTo(toX(x1), toY(y1)); ctx.lineTo(toX(xsp), toY(ysp)); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    const punkte4 = {
+      P: [-1, 1], Q: [0, -2], R: [1, 2], S: [3, 4], T: [4, 1]
+    };
+    const vektoren4 = {
+      V1: [-1, 3], V2: [3, 4], V3: [2, 1], V4: [1, 2], V5: [1, -1], V6: [-4, -3]
+    };
+
+    function zeigeVektoren(typ) {
+      const canvas = document.getElementById('plot4');
+      const ctx = canvas.getContext('2d');
+      const scale = 40;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Achsen
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+
+      // Achsenbeschriftung & Ticks
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -6; i <= 6; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
+
+      // Punkte
+      for (const [name, [x, y]] of Object.entries(punkte4)) {
+        ctx.fillStyle = "black";
+        ctx.beginPath(); ctx.arc(toX(x), toY(y), 4, 0, 2 * Math.PI); ctx.fill();
+        ctx.fillText(name, toX(x) + 6, toY(y) - 6);
+      }
+
+      function zeichneVektor(x, y, farbe, label) {
+        ctx.strokeStyle = farbe;
+        ctx.fillStyle = farbe;
+        ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(toX(0), toY(0)); ctx.lineTo(toX(x), toY(y)); ctx.stroke();
+        ctx.fillText(label, toX(x) + 5, toY(y) - 5);
+      }
+
+      let info = "";
+      switch (typ) {
+        case "ortsvektor":
+          zeichneVektor(3, 4, "blue", "V2");
+          zeichneVektor(2, 1, "green", "V3");
+          info = "<strong>Ortsvektor:</strong> Vom Ursprung zu einem Punkt → z. B. V2 → S, V3 → R";
+          break;
+        case "verbindungsvektor":
+          zeichneVektor(1, 2, "orange", "V4");
+          zeichneVektor(1, -1, "orange", "V5");
+          info = "<strong>Verbindungsvektor:</strong> Zwischen zwei Punkten → z. B. QR oder RT";
+          break;
+        case "gegen_orts":
+          zeichneVektor(-3, -4, "purple", "–V2");
+          zeichneVektor(-2, -1, "purple", "–V3");
+          info = "<strong>Gegenvektor zu Ortsvektor:</strong> Rückweg vom Ziel zum Ursprung.";
+          break;
+        case "gegen_verbindung":
+          zeichneVektor(-1, -2, "red", "–V4");
+          zeichneVektor(-1, 1, "red", "–V5");
+          info = "<strong>Gegenvektor zu Verbindungsvektor:</strong> zeigt in entgegengesetzte Richtung.";
+          break;
+      }
+      document.getElementById("infofeld4").innerHTML = info;
+    }
+
+    function berechneFehlendenPunkt5() {
+      const mx = parseFloat(document.getElementById('mx_5').value);
+      const my = parseFloat(document.getElementById('my_5').value);
+      const px = parseFloat(document.getElementById('px_5').value);
+      const py = parseFloat(document.getElementById('py_5').value);
+      const fx = 2 * mx - px;
+      const fy = 2 * my - py;
+
+      document.getElementById('ergebnis5').innerHTML =
+        `<strong>Fehlender Punkt = (${fx}; ${fy})</strong><br>
+        Erklärung: Mittelpunkt M = ((x₁ + x₂)/2 ; (y₁ + y₂)/2)<br>
+        Rückrechnung: x₂ = 2·mₓ – x₁ = ${fx}, y₂ = 2·mᵧ – y₁ = ${fy}`;
+
+      const canvas = document.getElementById('plot5');
+      const ctx = canvas.getContext('2d');
+      const scale = 20;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Achsen
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath(); ctx.moveTo(0, oy); ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0); ctx.lineTo(ox, canvas.height); ctx.stroke();
+
+      // Beschriftung
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -10; i <= 10; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
+
+      // Gegebener Punkt A/B
+      ctx.fillStyle = "blue";
+      ctx.beginPath(); ctx.arc(toX(px), toY(py), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("A/B", toX(px) + 5, toY(py) - 5);
+
+      // Mittelpunkt M
+      ctx.fillStyle = "orange";
+      ctx.beginPath(); ctx.arc(toX(mx), toY(my), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("M", toX(mx) + 5, toY(my) - 5);
+
+      // Fehlender Punkt B/A
+      ctx.fillStyle = "green";
+      ctx.beginPath(); ctx.arc(toX(fx), toY(fy), 5, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillText("B/A", toX(fx) + 5, toY(fy) - 5);
+
+      // Linie A ↔ B
+      ctx.strokeStyle = "black";
+      ctx.beginPath(); ctx.moveTo(toX(px), toY(py)); ctx.lineTo(toX(fx), toY(fy)); ctx.stroke();
+    }
+
+    const canvas7 = document.getElementById("plot7");
+    const ctx7 = canvas7.getContext("2d");
+    const origin7 = { x: 250, y: 250 };
+    const scale7 = 20;
+
+    function iso3D(x, y, z) {
+      const isoX = origin7.x + (x - y) * scale7 * 0.7;
+      const isoY = origin7.y + (x + y) * scale7 * 0.4 - z * scale7;
+      return { x: isoX, y: isoY };
+    }
+
+    const punkte7 = {
+      A: [2, 3, 4], B: [-2, 0, 1], C: [3, -1, 0], D: [0, 0, -3]
+    };
+
+    function zeichne3DSystem7() {
+      ctx7.clearRect(0, 0, canvas7.width, canvas7.height);
+      ctx7.strokeStyle = "#999";
+      ctx7.lineWidth = 1;
+
+      // Achsen
+      const achsen = [
+        { x: 1, y: 0, z: 0, label: "x" },
+        { x: 0, y: 1, z: 0, label: "y" },
+        { x: 0, y: 0, z: 1, label: "z" }
+      ];
+
+      for (let achse of achsen) {
+        const end = iso3D(achse.x * 6, achse.y * 6, achse.z * 6);
+        ctx7.beginPath();
+        ctx7.moveTo(origin7.x, origin7.y);
+        ctx7.lineTo(end.x, end.y);
+        ctx7.stroke();
+        ctx7.fillText(achse.label, end.x + 5, end.y + 5);
+      }
+
+      // Punkte
+      for (let name in punkte7) {
+        const [x, y, z] = punkte7[name];
+        const p = iso3D(x, y, z);
+        ctx7.fillStyle = name === "A" ? "blue" : "black";
+        ctx7.beginPath();
+        ctx7.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+        ctx7.fill();
+        ctx7.fillText(name, p.x + 6, p.y - 6);
+      }
+
+      // Zahlen an Achsen
+      ctx7.fillStyle = "#333";
+      ctx7.font = "10px Arial";
+      for (let i = 1; i <= 5; i++) {
+        const px = iso3D(i, 0, 0);
+        const py = iso3D(0, i, 0);
+        const pz = iso3D(0, 0, i);
+        ctx7.fillText(i, px.x + 2, px.y + 12);
+        ctx7.fillText(i, py.x + 2, py.y + 12);
+        ctx7.fillText(i, pz.x + 2, pz.y + 2);
+      }
+    }
+
+    function prüfeZusammenfall7() {
+      const A = punkte7.A.toString();
+      let ausgabe = "<strong>Zusammenfall mit A(2|3|4):</strong><br>";
+
+      for (let i = 1; i <= 3; i++) {
+        const x = document.getElementById("x" + i + "_7").value;
+        const y = document.getElementById("y" + i + "_7").value;
+        const z = document.getElementById("z" + i + "_7").value;
+        const pointStr = [x, y, z].toString();
+        if (pointStr === A) {
+          ausgabe += `✅ Punkt ${i} fällt mit A zusammen: (${x}|${y}|${z})<br>`;
+        } else {
+          ausgabe += `❌ Punkt ${i} ist verschieden: (${x}|${y}|${z})<br>`;
+        }
+      }
+
+      ausgabe += "<br><strong>b)</strong> Punkte B, C und D liegen vermutlich in einer Ebene (koplanar).<br>";
+      ausgabe += "<br><strong>c)</strong> Beispielhafte Punkte für A:<br>– (2|3|4), z. B. (1+1|1+2|2+2), Mittelwert von (1|2|3) und (3|4|5) usw.";
+      document.getElementById("infofeld7").innerHTML = ausgabe;
+    }
+
+    zeichne3DSystem7();
+
+    function parseTerm6(term) {
+      const regex = /^(\d+\/\d+|\-?\d+(\.\d+)?|\-?\d+)?\s*\*?\s*$\s*(-?\d+(\.\d+)?)\s*;\s*(-?\d+(\.\d+)?)\s*$$/;
+      const match = term.trim().match(regex);
+      if (!match) return null;
+
+      const faktor = match[1] ? eval(match[1]) : 1;
+      const x = parseFloat(match[3]);
+      const y = parseFloat(match[5]);
+
+      return [faktor * x, faktor * y];
+    }
+
+    function berechneLinearkombination6() {
+      const t1 = document.getElementById("term1").value;
+      const t2 = document.getElementById("term2").value;
+      const t3 = document.getElementById("term3").value;
+
+      const v1 = parseTerm6(t1);
+      const v2 = parseTerm6(t2);
+      const v3 = parseTerm6(t3);
+
+      if (!v1 || !v2 || !v3) {
+        document.getElementById("ergebnis6").innerHTML = "❌ Bitte überprüfe deine Eingaben. Format: z. B. 2*(3;4)";
+        zeichneVektor6([0, 0], [0, 0]); // leeres Feld
+        return;
+      }
+
+      const sum = [
+        v1[0] + v2[0] + v3[0],
+        v1[1] + v2[1] + v3[1]
+      ];
+
+      const output = `
+        <strong>Ergebnis:</strong><br>
+        Vektor = (${sum[0].toFixed(2)}; ${sum[1].toFixed(2)})<br><br>
+        Die Linearkombination ergibt sich durch Addition:<br>
+        → = ${t1} + ${t2} + ${t3}
+      `;
+
+      document.getElementById("ergebnis6").innerHTML = output;
+      zeichneVektor6([0, 0], sum);
+    }
+
+    function zeichneVektor6(start, ende) {
+      const canvas = document.getElementById("plot6");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const scale = 20;
+      const ox = canvas.width / 2;
+      const oy = canvas.height / 2;
+      const toX = x => ox + x * scale;
+      const toY = y => oy - y * scale;
+
+      // Koordinatenachsen
+      ctx.strokeStyle = "#ccc";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, oy);
+      ctx.lineTo(canvas.width, oy);
+      ctx.moveTo(ox, 0);
+      ctx.lineTo(ox, canvas.height);
+      ctx.stroke();
+
+      // Beschriftung
+      ctx.fillStyle = "#333";
+      ctx.font = "10px Arial";
+      for (let i = -10; i <= 10; i++) {
+        const x = toX(i);
+        ctx.beginPath(); ctx.moveTo(x, oy - 3); ctx.lineTo(x, oy + 3); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, x - 3, oy + 12);
+
+        const y = toY(i);
+        ctx.beginPath(); ctx.moveTo(ox - 3, y); ctx.lineTo(ox + 3, y); ctx.stroke();
+        if (i !== 0) ctx.fillText(i, ox + 5, y + 3);
+      }
+
+      // Vektor zeichnen
+      ctx.strokeStyle = "green";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(toX(start[0]), toY(start[1]));
+      ctx.lineTo(toX(ende[0]), toY(ende[1]));
+      ctx.stroke();
+
+      ctx.fillStyle = "green";
+      ctx.beginPath();
+      ctx.arc(toX(ende[0]), toY(ende[1]), 5, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    function berechneSchnittpunkt() {
+      const a1 = document.getElementById("a1");
+      const a2 = document.getElementById("a2");
+      const a3 = document.getElementById("a3");
+      const v1 = document.getElementById("v1");
+      const v2 = document.getElementById("v2");
+      const v3 = document.getElementById("v3");
+      const b1 = document.getElementById("b1");
+      const b2 = document.getElementById("b2");
+      const b3 = document.getElementById("b3");
+      const w1 = document.getElementById("w1");
+      const w2 = document.getElementById("w2");
+      const w3 = document.getElementById("w3");
+
+      const a = [parseFloat(a1.value), parseFloat(a2.value), parseFloat(a3.value)];
+      const v = [parseFloat(v1.value), parseFloat(v2.value), parseFloat(v3.value)];
+      const b = [parseFloat(b1.value), parseFloat(b2.value), parseFloat(b3.value)];
+      const w = [parseFloat(w1.value), parseFloat(w2.value), parseFloat(w3.value)];
+
+      try {
+        const rhs = math.subtract(b, a);
+        const reduced = [[v[0], -w[0], rhs[0]], [v[1], -w[1], rhs[1]]];
+        const sol = math.lusolve(math.matrix(reduced.map(r => r.slice(0, 2))), math.matrix(reduced.map(r => r[2])));
+        const s = sol.get([0,0]);
+        const schnittpunkt = math.add(a, math.multiply(s, v));
+        document.getElementById("output1").innerHTML = `✅ Schnittpunkt S: (${schnittpunkt.map(x => x.toFixed(2)).join(", ")})`;
+
+        const sRange = math.range(-2, 2, 0.1).toArray();
+        const r1 = sRange.map(s => math.add(a, math.multiply(s, v)));
+        const r2 = sRange.map(t => math.add(b, math.multiply(t, w)));
+
+        Plotly.newPlot("plot8", [
+          { x: r1.map(p => p[0]), y: r1.map(p => p[1]), z: r1.map(p => p[2]), type: 'scatter3d', mode: 'lines', name: 'r₁' },
+          { x: r2.map(p => p[0]), y: r2.map(p => p[1]), z: r2.map(p => p[2]), type: 'scatter3d', mode: 'lines', name: 'r₂' },
+          { x: [schnittpunkt[0]], y: [schnittpunkt[1]], z: [schnittpunkt[2]], type: 'scatter3d', mode: 'markers', marker: { size: 4 }, name: 'Schnittpunkt' }
+        ], { margin: { t: 0 } });
+
+      } catch (e) {
+        document.getElementById("output1").innerHTML = "❌ Kein Schnittpunkt gefunden oder fehlerhafte Eingabe.";
+      }
+    }
+
+    function berechneWinkel() {
+      const vA1 = document.getElementById("vA1");
+      const vA2 = document.getElementById("vA2");
+      const vA3 = document.getElementById("vA3");
+      const wA1 = document.getElementById("wA1");
+      const wA2 = document.getElementById("wA2");
+      const wA3 = document.getElementById("wA3");
+
+      const v = [parseFloat(vA1.value), parseFloat(vA2.value), parseFloat(vA3.value)];
+      const w = [parseFloat(wA1.value), parseFloat(wA2.value), parseFloat(wA3.value)];
+
+      try {
+        const skalar = math.dot(v, w);
+        const betragV = math.norm(v);
+        const betragW = math.norm(w);
+        const cosphi = skalar / (betragV * betragW);
+        const winkel = Math.acos(cosphi) * 180 / Math.PI;
+        document.getElementById("output2").innerHTML = `📐 Winkel ≈ ${winkel.toFixed(2)}°`;
+
+        Plotly.newPlot("plot9", [
+          { x: [0, v[0]], y: [0, v[1]], z: [0, v[2]], type: 'scatter3d', mode: 'lines+markers', name: 'v' },
+          { x: [0, w[0]], y: [0, w[1]], z: [0, w[2]], type: 'scatter3d', mode: 'lines+markers', name: 'w' }
+        ], { margin: { t: 0 } });
+
+      } catch (e) {
+        document.getElementById("output2").innerHTML = "❌ Fehlerhafte Eingabe oder numerisches Problem.";
+      }
+    }
+
+    function berechneGerade() {
+      const ga1 = document.getElementById("ga1");
+      const ga2 = document.getElementById("ga2");
+      const ga3 = document.getElementById("ga3");
+      const gb1 = document.getElementById("gb1");
+      const gb2 = document.getElementById("gb2");
+      const gb3 = document.getElementById("gb3");
+
+      const A = [parseFloat(ga1.value), parseFloat(ga2.value), parseFloat(ga3.value)];
+      const B = [parseFloat(gb1.value), parseFloat(gb2.value), parseFloat(gb3.value)];
+
+      try {
+        const AB = math.subtract(B, A);
+        const gl = `r = (${A.map(x => x.toFixed(2)).join(", ")}) + s · (${AB.map(x => x.toFixed(2)).join(", ")})`;
+        document.getElementById("output3").innerHTML = `🧾 Geradengleichung: ${gl}`;
+
+        const sRange = math.range(-1, 2, 0.1).toArray();
+        const punkte = sRange.map(s => math.add(A, math.multiply(s, AB)));
+
+        Plotly.newPlot("plot10", [
+          { x: punkte.map(p => p[0]), y: punkte.map(p => p[1]), z: punkte.map(p => p[2]), type: 'scatter3d', mode: 'lines', name: 'Gerade' },
+          { x: [A[0]], y: [A[1]], z: [A[2]], type: 'scatter3d', mode: 'markers', name: 'Punkt A' },
+          { x: [B[0]], y: [B[1]], z: [B[2]], type: 'scatter3d', mode: 'markers', name: 'Punkt B' }
+        ], { margin: { t: 0 } });
+
+      } catch (e) {
+        document.getElementById("output3").innerHTML = "❌ Fehlerhafte Eingabe.";
+      }
+    }
+
+    window.onload = () => {
+      berechneSchnittpunkt();
+      berechneWinkel();
+      berechneGerade();
+    };
+  </script>
+  <div style="text-align: center; margin-top: 20px;">
     <img src="https://visitor-badge.laobi.icu/badge?page_id=mathe-studio" alt="Besucherzähler"> 👍
   </div>
-  
 </body>
 </html>
